@@ -3,9 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Showday from "./showday";
 import './inputvalue.css';
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import { Stack } from "react-bootstrap";
+import { Row, Col, Stack, FormControl, FloatingLabel } from "react-bootstrap";
+
 
 function calculate(d, m, y) {
 
@@ -60,62 +59,95 @@ function Inputvalue() {
     return (
         <div className="container">
 
-            <Stack gap={4} className="col-md-auto mx-auto">
+
+            <Stack gap={2} className="col-md-auto mx-auto">
                 <Row>
                     <Col>
                         <h1>Day of the Week</h1>
                     </Col>
                 </Row>
                 <Row>
-                    <Col md="2" sm="2">
-                        date :
-                    </Col>
-                    <Col ><input type="text" value={date} maxLength="2"
 
-                        placeholder="Enter date"
-                        onChange={e => {
-                            const val = e.target.value;
-                            setDate(val)
-                        }} />
-                    </Col>
-
-                </Row>
-
-                <Row>
-                    <Col md="2" sm="2" >
-                        month :
-                    </Col>
-                    <Col> <input type="text" value={month} maxlength="2"
-                        placeholder="Enter month"
-                        onChange={e => {
-                            const val = e.target.value;
-                            setMonth(val)
-                        }} />
+                    <Col>
+                        <div className="inputvalue">
+                            <FloatingLabel
+                                controlId="floatingInput"
+                                label="Enter date"
+                                className="mb-3"
+                            >
+                                <FormControl aria-label="Small"
+                                    aria-describedby="inputGroup-sizing-default"
+                                    type="number" min="1" max="31"
+                                    value={date}
+                                    placeholder="Enter date"
+                                    onChange={e => {
+                                        const val = e.target.value;
+                                        setDate(val)
+                                    }} />
+                            </FloatingLabel>
+                        </div>
                     </Col>
 
                 </Row>
 
                 <Row>
-                    <Col md="2" sm="2">
-                        year :
-                    </Col>
-                    <Col> <input type="text" value={year} maxlength="4"
-                        placeholder="Enter year"
-                        onChange={e => {
-                            const val = e.target.value;
-                            setYear(val)
-                        }} />
+
+                    <Col>
+                        <div className="inputvalue">
+                            <FloatingLabel
+                                controlId="floatingInput"
+                                label="Enter month"
+                                className="mb-3"
+                            >
+                                <FormControl aria-label="Small" className="inputnum"
+                                    aria-describedby="inputGroup-sizing-default"
+                                    type="number" min="1" max="31"
+                                    value={month}
+                                    placeholder="Enter month"
+                                    onChange={e => {
+                                        const val = e.target.value;
+                                        setMonth(val)
+                                    }} />
+                            </FloatingLabel>
+                        </div>
                     </Col>
 
                 </Row>
 
-                <Button className="btn" variant="info"
+                <Row>
+
+                    <Col >
+                        <div className="inputvalue">
+                            <FloatingLabel
+                                controlId="floatingInput"
+                                label="Enter year"
+                                className="mb-3"
+                            >
+                                <FormControl aria-label="Small"
+                                    aria-describedby="inputGroup-sizing-default"
+                                    type="number" min="1" max="31"
+                                    value={year}
+                                    placeholder="Enter year"
+                                    onChange={e => {
+                                        const val = e.target.value;
+                                        setYear(val)
+                                    }} />
+                            </FloatingLabel>
+                        </div>
+
+                    </Col>
+
+                </Row>
+
+                <Button className="btn" variant="primary"
                     onClick={e => {
                         const val = calculate(date, month, year);
                         setDayofweek(val);
                     }}> Calculate
                 </Button>
-                <Showday day={dayofweek} date={date} month={month} year={year} />
+                <div className="alert">
+                    <Showday day={dayofweek} date={date} month={month} year={year} />
+                </div>
             </Stack>
 
 
